@@ -169,12 +169,12 @@ class CreditsScreen extends StatelessWidget {
 
           //Author Credits
           Positioned.fill(
-            bottom: 25,
+            bottom: 15,
             child: Align(
               alignment: Alignment.bottomCenter,
               child: InkWell(
                 onTap: () async {
-                  const url = 'https://github.com/arafaysaleem/covid_tracker';
+                  const url = 'https://github.com/MIA-GH/corona';
                   if (await canLaunch(url)) {
                     await launch(
                       url,
@@ -228,7 +228,7 @@ class CreditsScreen extends StatelessWidget {
                         maxLines: 1,
                       ),
                       AutoSizeText(
-                        "Abdur Rafay Saleem",
+                        "Musah Ibrahim Ali",
                         style: TextStyle(
                           fontSize: 15,
                           fontFamily: "Montserrat",
