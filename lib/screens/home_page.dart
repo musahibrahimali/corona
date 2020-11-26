@@ -8,14 +8,12 @@ class HomeScreen extends StatefulWidget {
 }
 
 class _HomeScreenState extends State<HomeScreen> {
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       resizeToAvoidBottomInset: false,
       resizeToAvoidBottomPadding: false,
       appBar: AppBar(
-        //TODO: Add a drawer window
         backgroundColor: Colors.transparent,
         elevation: 0,
         leading: IconButton(
