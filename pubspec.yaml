@@ -48,10 +48,10 @@ flutter_icons:
 
 # native splash screen
 flutter_native_splash:
-  background_image: "assets/welcome/splash_screen_light.png"
-  background_image_dark: "assets/welcome/splash_screen_dark.png"
-  image: "assets/stats.png"
-  image_dark: "assets/stats.png"
+  background_image: "assets/welcome/splash_screen.png"
+  background_image_dark: "assets/welcome/splash_screen.png"
+  image: "assets/launcher/launcher.png"
+  image_dark: "assets/launcher/launcher.png"
   android: true
   ios: true
   fullscreen: true
