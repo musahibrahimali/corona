@@ -1,6 +1,6 @@
-import 'package:flutter/material.dart';
-import 'home_category.dart';
 import 'package:auto_size_text/auto_size_text.dart';
+import 'package:corona/index.dart';
+import 'package:flutter/material.dart';
 
 // ignore: must_be_immutable
 class HomeCategories extends StatelessWidget {

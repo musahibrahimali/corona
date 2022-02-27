@@ -6,5 +6,11 @@ class BarItem {
   final double iconSize, textSize;
   final Color color;
 
-  BarItem({this.text, this.icon, this.color, this.iconSize=24, this.textSize});
+  BarItem({
+    this.text,
+    this.icon,
+    this.color,
+    this.iconSize = 24,
+    this.textSize,
+  });
 }

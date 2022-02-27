@@ -1,9 +1,13 @@
 import 'package:flutter/material.dart';
 
-class ItemColorData{
+class ItemColorData {
   final Color backgroundColor;
   final Color lineColor;
   final Color gradientColor;
 
-  ItemColorData({this.backgroundColor, this.lineColor, this.gradientColor});
+  ItemColorData({
+    this.backgroundColor,
+    this.lineColor,
+    this.gradientColor,
+  });
 }

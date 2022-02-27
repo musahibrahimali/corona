@@ -1,10 +1,5 @@
 import 'package:auto_size_text/auto_size_text.dart';
-
-import '../widgets/news_widgets/news_tile.dart';
-import '../widgets/news_widgets/updates_page_carousel.dart';
-import '../network_requests/api_client.dart';
-import '../network_requests/exceptions.dart';
-import '../widgets/skeletons/news_list_skeleton.dart';
+import 'package:corona/index.dart';
 import 'package:flutter/material.dart';
 
 class UpdatesScreen extends StatefulWidget {
@@ -33,10 +28,10 @@ class _UpdatesScreenState extends State<UpdatesScreen> {
     return articles;
   }
 
-  refresh() async{
-    await Future.delayed(Duration(milliseconds: 800),() {
+  refresh() async {
+    await Future.delayed(Duration(milliseconds: 800), () {
       setState(() {
-        _newsFuture=getNews();
+        _newsFuture = getNews();
       });
     });
   }
@@ -44,22 +39,22 @@ class _UpdatesScreenState extends State<UpdatesScreen> {
   @override
   void initState() {
     super.initState();
-    _newsFuture=getNews();
+    _newsFuture = getNews();
   }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       resizeToAvoidBottomInset: false,
-      resizeToAvoidBottomPadding: false,
+      // resizeToAvoidBottomPadding: false,
       appBar: AppBar(
         title: AutoSizeText(
           "Covid-19 Updates",
           style: TextStyle(
-              color: Colors.black,
-              fontFamily: "Montserrat",
-              fontSize: 20,
-              fontWeight: FontWeight.w600,
+            color: Colors.black,
+            fontFamily: "Montserrat",
+            fontSize: 20,
+            fontWeight: FontWeight.w600,
           ),
           stepGranularity: 2,
           maxFontSize: 20,
@@ -81,7 +76,7 @@ class _UpdatesScreenState extends State<UpdatesScreen> {
           IconButton(
             onPressed: () {
               setState(() {
-                _newsFuture=null;
+                _newsFuture = null;
                 refresh();
               });
             },
@@ -102,10 +97,12 @@ class _UpdatesScreenState extends State<UpdatesScreen> {
               crossAxisAlignment: CrossAxisAlignment.start,
               children: <Widget>[
                 //Carousel
-                ImageCarousel(height: constraint.maxHeight*0.26,),
+                ImageCarousel(
+                  height: constraint.maxHeight * 0.26,
+                ),
 
                 //Divider
-               Divider(
+                Divider(
                   color: Colors.black,
                   height: 25,
                   thickness: 2,
@@ -118,7 +115,7 @@ class _UpdatesScreenState extends State<UpdatesScreen> {
                   children: <Widget>[
                     //Sort by
                     Padding(
-                      padding: MediaQuery.of(context).size.width>360.0? EdgeInsets.only(left: 20):EdgeInsets.only(left: 0),
+                      padding: MediaQuery.of(context).size.width > 360.0 ? EdgeInsets.only(left: 20) : EdgeInsets.only(left: 0),
                       child: LimitedBox(
                         maxWidth: 68,
                         child: AutoSizeText(
@@ -137,15 +134,19 @@ class _UpdatesScreenState extends State<UpdatesScreen> {
                       ),
                     ),
 
-                    SizedBox(width: MediaQuery.of(context).size.width > 340.0?10:7),
+                    SizedBox(width: MediaQuery.of(context).size.width > 340.0 ? 10 : 7),
 
-                    Expanded(child: const Icon(Icons.filter_list,size: 26,)),
+                    Expanded(
+                        child: const Icon(
+                      Icons.filter_list,
+                      size: 26,
+                    )),
 
                     SizedBox(width: 10),
 
                     //DropDown
                     Container(
-                      width: constraint.maxWidth*0.63,
+                      width: constraint.maxWidth * 0.63,
                       padding: const EdgeInsets.only(left: 15, right: 10),
                       decoration: BoxDecoration(
                         color: Colors.black,
@@ -189,7 +190,7 @@ class _UpdatesScreenState extends State<UpdatesScreen> {
                                   ),
                                 ),
                               ),
-                              const  DropdownMenuItem(
+                              const DropdownMenuItem(
                                 value: "popular",
                                 child: SizedBox(
                                   width: 68,
@@ -265,7 +266,7 @@ class _UpdatesScreenState extends State<UpdatesScreen> {
                             onChanged: (String newValue) {
                               setState(() {
                                 dropDownValue = newValue;
-                                _newsFuture=getNews();
+                                _newsFuture = getNews();
                               });
                             },
                           ),
@@ -287,14 +288,14 @@ class _UpdatesScreenState extends State<UpdatesScreen> {
                   child: FutureBuilder<dynamic>(
                     future: _newsFuture,
                     builder: (context, snapshot) {
-                      return (snapshot.data == null || snapshot.connectionState!=ConnectionState.done)
+                      return (snapshot.data == null || snapshot.connectionState != ConnectionState.done)
                           ? NewsListLoader()
                           : ListView.separated(
                               physics: BouncingScrollPhysics(),
                               itemCount: 10,
                               separatorBuilder: (context, index) {
                                 return Divider(
-                                  height: (snapshot.data is FetchDataException)?20:40,
+                                  height: (snapshot.data is FetchDataException) ? 20 : 40,
                                   color: Colors.black,
                                   thickness: 2,
                                 );
@@ -322,9 +323,9 @@ class _UpdatesScreenState extends State<UpdatesScreen> {
                                     ),
                                   );
                                 }
-                                return NewsTile(article:snapshot.data[index]);
+                                return NewsTile(article: snapshot.data[index]);
                               },
-                      );
+                            );
                     },
                   ),
                 ),

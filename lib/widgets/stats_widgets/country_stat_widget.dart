@@ -1,10 +1,5 @@
 import 'package:auto_size_text/auto_size_text.dart';
-import 'package:corona/values/default_country_data.dart';
-
-import '../../widgets/stats_widgets/country_card_details.dart';
-import '../../network_requests/api_client.dart';
-import '../../network_requests/exceptions.dart';
-import '../../widgets/skeletons/country_stat_skeleton.dart';
+import 'package:corona/index.dart';
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 
@@ -14,22 +9,14 @@ class CountryStatWidget extends StatefulWidget {
   Function onBackArrow;
 
   CountryStatWidget(
-      {Key key,
-      this.color,
-      this.onBackArrow,
-      this.countryName,
-      this.countryCode,
-      this.flagPath,
-      this.isIncreasing,
-      this.totalCases})
+      {Key key, this.color, this.onBackArrow, this.countryName, this.countryCode, this.flagPath, this.isIncreasing, this.totalCases})
       : super(key: key);
 
   @override
   _CountryStatWidgetState createState() => _CountryStatWidgetState();
 }
 
-class _CountryStatWidgetState extends State<CountryStatWidget>
-    with TickerProviderStateMixin {
+class _CountryStatWidgetState extends State<CountryStatWidget> with TickerProviderStateMixin {
   AnimationController _controller1, _controller2;
   Duration textScaleDuration;
   final formatter = new NumberFormat("#,###");
@@ -42,16 +29,8 @@ class _CountryStatWidgetState extends State<CountryStatWidget>
     super.initState();
     selectedIndex = 0;
     textScaleDuration = Duration(milliseconds: 200);
-    _controller1 = AnimationController(
-        vsync: this,
-        duration: textScaleDuration,
-        lowerBound: 0.7,
-        upperBound: 1);
-    _controller2 = AnimationController(
-        vsync: this,
-        duration: textScaleDuration,
-        lowerBound: 0.7,
-        upperBound: 1);
+    _controller1 = AnimationController(vsync: this, duration: textScaleDuration, lowerBound: 0.7, upperBound: 1);
+    _controller2 = AnimationController(vsync: this, duration: textScaleDuration, lowerBound: 0.7, upperBound: 1);
     _controller1.forward();
     _countryFuture = getCountryData();
   }
@@ -59,10 +38,8 @@ class _CountryStatWidgetState extends State<CountryStatWidget>
   Future<bool> getCountryData() async {
     ApiClient _apiClient = ApiClient();
 
-    todayJson = await _apiClient.getStatsResponse(StateLocation.SPECIFIC,
-        code: widget.countryCode);
-    yestJson = await _apiClient.getStatsResponse(StateLocation.SPECIFIC,
-        code: widget.countryCode, yesterday: true);
+    todayJson = await _apiClient.getStatsResponse(StateLocation.SPECIFIC, code: widget.countryCode);
+    yestJson = await _apiClient.getStatsResponse(StateLocation.SPECIFIC, code: widget.countryCode, yesterday: true);
     return true;
   }
 
@@ -247,9 +224,7 @@ class _CountryStatWidgetState extends State<CountryStatWidget>
 
                         //Arrow
                         Icon(
-                          widget.isIncreasing
-                              ? Icons.arrow_upward
-                              : Icons.arrow_downward,
+                          widget.isIncreasing ? Icons.arrow_upward : Icons.arrow_downward,
                           color: Colors.white,
                           size: 28,
                         )
@@ -302,8 +277,7 @@ class _CountryStatWidgetState extends State<CountryStatWidget>
                   }
 
                   if (snapshot.hasData) {
-                    if (todayJson is FetchDataException ||
-                        yestJson is FetchDataException) {
+                    if (todayJson is FetchDataException || yestJson is FetchDataException) {
                       return Container(
                         decoration: BoxDecoration(
                           color: Color(0xfff3cfff),
@@ -337,8 +311,7 @@ class _CountryStatWidgetState extends State<CountryStatWidget>
                   } else {
                     return CountryStatLoader(
                       color: widget.color,
-                      isDefault:
-                          defaultCountry.countryName == widget.countryName,
+                      isDefault: defaultCountry.countryName == widget.countryName,
                     );
                   }
                 },

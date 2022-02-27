@@ -24,9 +24,11 @@ class CreditsScreen extends StatelessWidget {
               children: <Widget>[
                 InkWell(
                   onTap: () {
-                    controller.animateToPage(0,
-                        duration: Duration(milliseconds: 150),
-                        curve: Curves.easeInOut);
+                    controller.animateToPage(
+                      0,
+                      duration: Duration(milliseconds: 150),
+                      curve: Curves.easeInOut,
+                    );
                   },
                   child: Padding(
                     padding: const EdgeInsets.all(20),
@@ -47,8 +49,7 @@ class CreditsScreen extends StatelessWidget {
                     ),
                   ),
                 ),
-                SizedBox(
-                    width: MediaQuery.of(context).size.width > 360 ? 80 : 60),
+                SizedBox(width: MediaQuery.of(context).size.width > 360 ? 80 : 60),
                 Padding(
                   padding: const EdgeInsets.only(top: 25),
                   child: AutoSizeText(
@@ -120,12 +121,10 @@ class CreditsScreen extends StatelessWidget {
                       child: Container(
                         decoration: BoxDecoration(
                           color: Color(0xff009a88),
-                          border:
-                              Border.all(color: Color(0xff009a88), width: 2),
+                          border: Border.all(color: Color(0xff009a88), width: 2),
                           borderRadius: BorderRadius.circular(5),
                         ),
-                        padding:
-                            EdgeInsets.symmetric(horizontal: 25, vertical: 8),
+                        padding: EdgeInsets.symmetric(horizontal: 25, vertical: 8),
                         child: AutoSizeText(
                           "License",
                           style: TextStyle(
@@ -147,7 +146,7 @@ class CreditsScreen extends StatelessWidget {
 
           //Paragraph
           Positioned(
-            top: 375,
+            top: 415,
             width: MediaQuery.of(context).size.width,
             child: Padding(
               padding: const EdgeInsets.all(15),
@@ -174,7 +173,7 @@ class CreditsScreen extends StatelessWidget {
               alignment: Alignment.bottomCenter,
               child: InkWell(
                 onTap: () async {
-                  const url = 'https://github.com/MIA-GH/corona';
+                  const url = 'https://github.com/musahibrahimali/corona';
                   if (await canLaunch(url)) {
                     await launch(
                       url,

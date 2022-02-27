@@ -1,12 +1,11 @@
 import 'dart:convert';
+
 import 'package:auto_size_text/auto_size_text.dart';
+import 'package:corona/index.dart';
 import 'package:flushbar/flushbar.dart';
-import 'package:shared_preferences/shared_preferences.dart';
-import '../../values/default_country_data.dart';
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
-import 'cases_progress_bars.dart';
-import 'new_case_boxes.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 // ignore: must_be_immutable
 class CountryCardDetails extends StatefulWidget {
@@ -16,21 +15,13 @@ class CountryCardDetails extends StatefulWidget {
   Map<String, dynamic> todayJson, yestJson;
 
   CountryCardDetails(
-      {this.color,
-      this.todayJson,
-      this.yestJson,
-      this.totalCases,
-      this.countryName,
-      this.countryCode,
-      this.flagPath,
-      this.isIncreasing});
+      {this.color, this.todayJson, this.yestJson, this.totalCases, this.countryName, this.countryCode, this.flagPath, this.isIncreasing});
 
   @override
   _CountryCardDetailsState createState() => _CountryCardDetailsState();
 }
 
-class _CountryCardDetailsState extends State<CountryCardDetails>
-    with TickerProviderStateMixin {
+class _CountryCardDetailsState extends State<CountryCardDetails> with TickerProviderStateMixin {
   AnimationController _controller1, _controller2;
   Duration textScaleDuration;
   final formatter = new NumberFormat("#,###");
@@ -41,16 +32,8 @@ class _CountryCardDetailsState extends State<CountryCardDetails>
     super.initState();
     selectedIndex = 0;
     textScaleDuration = Duration(milliseconds: 200);
-    _controller1 = AnimationController(
-        vsync: this,
-        duration: textScaleDuration,
-        lowerBound: 0.7,
-        upperBound: 1);
-    _controller2 = AnimationController(
-        vsync: this,
-        duration: textScaleDuration,
-        lowerBound: 0.7,
-        upperBound: 1);
+    _controller1 = AnimationController(vsync: this, duration: textScaleDuration, lowerBound: 0.7, upperBound: 1);
+    _controller2 = AnimationController(vsync: this, duration: textScaleDuration, lowerBound: 0.7, upperBound: 1);
     _controller1.forward();
   }
 
@@ -83,12 +66,10 @@ class _CountryCardDetailsState extends State<CountryCardDetails>
                 child: AutoSizeText(
                   "Today",
                   style: TextStyle(
-                      fontFamily: "Montserrat",
-                      fontWeight: selectedIndex == 0
-                          ? FontWeight.w700
-                          : FontWeight.w600,
-                      color: Colors.grey[800],
-                      fontSize: 22.0,
+                    fontFamily: "Montserrat",
+                    fontWeight: selectedIndex == 0 ? FontWeight.w700 : FontWeight.w600,
+                    color: Colors.grey[800],
+                    fontSize: 22.0,
                   ),
                   maxFontSize: 22,
                 ),
@@ -108,12 +89,10 @@ class _CountryCardDetailsState extends State<CountryCardDetails>
                 child: AutoSizeText(
                   "Yesterday",
                   style: TextStyle(
-                      fontFamily: "Montserrat",
-                      fontWeight: selectedIndex == 0
-                          ? FontWeight.w600
-                          : FontWeight.w700,
-                      color: Colors.grey[800],
-                      fontSize: 22.0,
+                    fontFamily: "Montserrat",
+                    fontWeight: selectedIndex == 0 ? FontWeight.w600 : FontWeight.w700,
+                    color: Colors.grey[800],
+                    fontSize: 22.0,
                   ),
                   maxFontSize: 22,
                 ),
@@ -130,8 +109,7 @@ class _CountryCardDetailsState extends State<CountryCardDetails>
                 color: widget.color,
                 affected: widget.todayJson["todayCases"],
                 deaths: widget.todayJson["todayDeaths"],
-                recovered: widget.todayJson["recovered"] -
-                    widget.yestJson["recovered"],
+                recovered: widget.todayJson["recovered"] - widget.yestJson["recovered"],
                 tested: widget.todayJson["tests"],
                 totalCases: widget.todayJson["cases"],
                 today: true,
@@ -175,21 +153,15 @@ class _CountryCardDetailsState extends State<CountryCardDetails>
                   defaultCountry.color = widget.color.value;
                   defaultCountry.flagPath = widget.flagPath;
                   defaultCountry.totalCases = widget.todayJson["cases"];
-                  defaultCountry.isIncreasing =
-                      widget.todayJson["cases"] > widget.yestJson["cases"];
+                  defaultCountry.isIncreasing = widget.todayJson["cases"] > widget.yestJson["cases"];
                   var jsonMap = defaultCountry.toJson();
-                  SharedPreferences prefs =
-                      await SharedPreferences.getInstance();
+                  SharedPreferences prefs = await SharedPreferences.getInstance();
                   prefs.setString("defaultCountry", json.encode(jsonMap));
                   Navigator.of(context).pop();
                   Flushbar(
                     messageText: AutoSizeText(
                       "${widget.countryName} set as default country",
-                      style: TextStyle(
-                        fontFamily: "Montserrat",
-                        fontSize: 17,
-                        color: Colors.white
-                      ),
+                      style: TextStyle(fontFamily: "Montserrat", fontSize: 17, color: Colors.white),
                       maxFontSize: 17,
                     ),
                     flushbarPosition: FlushbarPosition.BOTTOM,

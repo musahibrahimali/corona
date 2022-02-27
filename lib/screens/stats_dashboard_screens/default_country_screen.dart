@@ -1,7 +1,5 @@
 import 'package:auto_size_text/auto_size_text.dart';
-
-import '../../values/default_country_data.dart';
-import '../../widgets/stats_widgets/country_stat_widget.dart';
+import 'package:corona/index.dart';
 import 'package:flutter/material.dart';
 
 // ignore: must_be_immutable
@@ -17,7 +15,7 @@ class DefaultCountryScreen extends StatefulWidget {
 class _DefaultCountryScreenState extends State<DefaultCountryScreen> {
   @override
   Widget build(BuildContext context) {
-    if(defaultCountry.countryName==null){
+    if (defaultCountry.countryName == null) {
       return Padding(
         padding: const EdgeInsets.fromLTRB(15, 350, 15, 0),
         child: Column(
@@ -37,9 +35,7 @@ class _DefaultCountryScreenState extends State<DefaultCountryScreen> {
             //Choose default country
             InkWell(
               onTap: () {
-                widget.controller.animateToPage(1,
-                    duration: Duration(milliseconds: 150),
-                    curve: Curves.easeInOut);
+                widget.controller.animateToPage(1, duration: Duration(milliseconds: 150), curve: Curves.easeInOut);
               },
               child: Container(
                 width: double.infinity,
@@ -67,7 +63,7 @@ class _DefaultCountryScreenState extends State<DefaultCountryScreen> {
       );
     }
     return CountryStatWidget(
-      onBackArrow: (){
+      onBackArrow: () {
         widget.controller.animateToPage(0, duration: Duration(milliseconds: 150), curve: Curves.easeInOut);
       },
       countryName: defaultCountry.countryName,

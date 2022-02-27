@@ -1,23 +1,16 @@
 import 'dart:convert';
 import 'dart:io';
-import 'api_service.dart';
-import 'package:http/http.dart' as http;
-import 'exceptions.dart';
+
+import 'package:corona/index.dart';
 import 'package:flutter/material.dart';
+import 'package:http/http.dart' as http;
 
 class ApiClient {
   ApiService _apiService = ApiService();
 
   getNewsResponse(String value) async {
     String endpoint = _getNewsEndpoint(value);
-    String url = _apiService.newsUrl +
-        _apiService.query +
-        "&" +
-        _apiService.limit +
-        "&" +
-        endpoint +
-        "&" +
-        _apiService.apiKey;
+    String url = _apiService.newsUrl + _apiService.query + "&" + _apiService.limit + "&" + endpoint + "&" + _apiService.apiKey;
     try {
       var response = await http.get(url);
       var json = jsonDecode(response.body);
@@ -31,20 +24,19 @@ class ApiClient {
     }
   }
 
-  getStatsResponse(StateLocation stateLocation,{String code="",bool yesterday=false}) async {
-    String endpoint=_getStatsEndpoint(location: stateLocation,code: code,yesterday: yesterday);
-    String url=_apiService.statsUrl+endpoint;
-    try{
+  getStatsResponse(StateLocation stateLocation, {String code = "", bool yesterday = false}) async {
+    String endpoint = _getStatsEndpoint(location: stateLocation, code: code, yesterday: yesterday);
+    String url = _apiService.statsUrl + endpoint;
+    try {
       var response = await http.get(url);
-      if(response.statusCode==200){
+      if (response.statusCode == 200) {
         // ignore: non_constant_identifier_names
-        var Json=json.decode(response.body);
-        if(stateLocation==StateLocation.TOP_FIVE){
-          return Json.sublist(0,6);
+        var Json = json.decode(response.body);
+        if (stateLocation == StateLocation.TOP_FIVE) {
+          return Json.sublist(0, 6);
         }
         return Json;
-      }
-      else{
+      } else {
         throw FetchDataException("Failed to load stats");
       }
     } on SocketException {
@@ -52,16 +44,16 @@ class ApiClient {
     }
   }
 
-  _getStatsEndpoint({@required String code,bool yesterday,@required StateLocation location}) {
+  _getStatsEndpoint({@required String code, bool yesterday, @required StateLocation location}) {
     if (location == StateLocation.GLOBAL) return "all?yesterday=$yesterday";
     String endpoint = "countries";
 
     if (location == StateLocation.SPECIFIC) {
       endpoint += "/" + code + "?strict=false&";
-    } else if(location==StateLocation.TOP_FIVE){
-      endpoint+="?sort=cases&";
-    } else if(location==StateLocation.ALL){
-      endpoint+="?";
+    } else if (location == StateLocation.TOP_FIVE) {
+      endpoint += "?sort=cases&";
+    } else if (location == StateLocation.ALL) {
+      endpoint += "?";
     }
     return endpoint + "allowNull=false&yesterday=$yesterday";
   }

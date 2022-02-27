@@ -1,6 +1,5 @@
 import 'package:auto_size_text/auto_size_text.dart';
-
-import '../widgets/home_page_widgets/precaution_card_grid.dart';
+import 'package:corona/index.dart';
 import 'package:flutter/material.dart';
 
 // ignore: must_be_immutable

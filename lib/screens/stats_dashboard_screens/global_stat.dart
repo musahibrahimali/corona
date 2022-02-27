@@ -1,14 +1,5 @@
 import 'package:auto_size_text/auto_size_text.dart';
-
-import '../../widgets/stats_widgets/affected_map_container.dart';
-import '../../widgets/stats_widgets/global_case_container.dart';
-import '../../widgets/stats_widgets/world_stats_image.dart';
-import '../../widgets/skeletons/top_country_list_skeleton.dart';
-import '../../widgets/skeletons/world_stat_skeleton.dart';
-import '../../widgets/stats_widgets/top_country_list.dart';
-import '../../models/summary_each_country.dart';
-import '../../network_requests/exceptions.dart';
-import '../../network_requests/api_client.dart';
+import 'package:corona/index.dart';
 import 'package:flutter/material.dart';
 
 class GlobalStatScreen extends StatefulWidget {
@@ -38,8 +29,7 @@ class _GlobalStatScreenState extends State<GlobalStatScreen> {
     //Because i wanted to show pakistan details in top 6 stats :)
     var pakStats;
     try {
-      pakStats =
-      await _client.getStatsResponse(StateLocation.SPECIFIC, code: "PK");
+      pakStats = await _client.getStatsResponse(StateLocation.SPECIFIC, code: "PK");
     } on FetchDataException catch (fde) {
       return fde;
     }
@@ -129,8 +119,7 @@ class _GlobalStatScreenState extends State<GlobalStatScreen> {
                       InkWell(
                         onTap: () => Navigator.of(context).pop(),
                         child: Padding(
-                          padding: const EdgeInsets.only(
-                              left: 15, right: 15, bottom: 5),
+                          padding: const EdgeInsets.only(left: 15, right: 15, bottom: 5),
                           child: const Icon(
                             Icons.arrow_back,
                             color: Color(0xFF4A148C),
@@ -142,7 +131,9 @@ class _GlobalStatScreenState extends State<GlobalStatScreen> {
                       SizedBox(
                         width: MediaQuery.of(context).size.width > 360.0
                             ? 55.0
-                            : MediaQuery.of(context).size.width > 340.0? 40 :30,
+                            : MediaQuery.of(context).size.width > 340.0
+                                ? 40
+                                : 30,
                       ),
 
                       //Text
@@ -206,10 +197,10 @@ class _GlobalStatScreenState extends State<GlobalStatScreen> {
                             AutoSizeText(
                               "Top Countries",
                               style: TextStyle(
-                                  fontFamily: "Montserrat",
-                                  fontSize: 18,
-                                  fontWeight: FontWeight.w600,
-                                  color: Colors.black,
+                                fontFamily: "Montserrat",
+                                fontSize: 18,
+                                fontWeight: FontWeight.w600,
+                                color: Colors.black,
                               ),
                               maxFontSize: 18,
                             ),
@@ -217,13 +208,10 @@ class _GlobalStatScreenState extends State<GlobalStatScreen> {
                             //View all
                             InkWell(
                               onTap: () {
-                                widget.controller.animateToPage(1,
-                                    duration: Duration(milliseconds: 150),
-                                    curve: Curves.easeInOut);
+                                widget.controller.animateToPage(1, duration: Duration(milliseconds: 150), curve: Curves.easeInOut);
                               },
                               child: Padding(
-                                padding:
-                                    const EdgeInsets.fromLTRB(10, 4, 10, 4),
+                                padding: const EdgeInsets.fromLTRB(10, 4, 10, 4),
                                 child: AutoSizeText(
                                   "View all",
                                   style: TextStyle(
@@ -248,13 +236,10 @@ class _GlobalStatScreenState extends State<GlobalStatScreen> {
                       Expanded(
                         child: FutureBuilder<dynamic>(
                           future: _topSixFuture,
-                          builder: (context,
-                              AsyncSnapshot<dynamic>
-                                  snapshot) {
+                          builder: (context, AsyncSnapshot<dynamic> snapshot) {
                             if (snapshot.hasError) {
                               return Container(
-                                margin: const EdgeInsets.symmetric(
-                                    horizontal: 15.0),
+                                margin: const EdgeInsets.symmetric(horizontal: 15.0),
                                 decoration: BoxDecoration(
                                   color: Color(0xfff3cfff),
                                   borderRadius: BorderRadius.circular(16),
@@ -277,8 +262,7 @@ class _GlobalStatScreenState extends State<GlobalStatScreen> {
                                     ? Container(
                                         decoration: BoxDecoration(
                                           color: Color(0xfff3cfff),
-                                          borderRadius:
-                                              BorderRadius.circular(16),
+                                          borderRadius: BorderRadius.circular(16),
                                         ),
                                         child: Center(
                                           child: Text(

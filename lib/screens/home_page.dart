@@ -1,6 +1,6 @@
-import '../widgets/home_page_widgets/home_categories.dart';
-import 'package:flutter/material.dart';
 import 'package:auto_size_text/auto_size_text.dart';
+import 'package:corona/index.dart';
+import 'package:flutter/material.dart';
 
 class HomeScreen extends StatefulWidget {
   @override
@@ -12,7 +12,7 @@ class _HomeScreenState extends State<HomeScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       resizeToAvoidBottomInset: false,
-      resizeToAvoidBottomPadding: false,
+      // resizeToAvoidBottomPadding: false,
       appBar: AppBar(
         backgroundColor: Colors.transparent,
         elevation: 0,
@@ -34,7 +34,7 @@ class _HomeScreenState extends State<HomeScreen> {
         ],
         centerTitle: true,
         title: AutoSizeText(
-          "Covid-19 Tracker",
+          "Covid-19 Updates",
           style: TextStyle(
             fontSize: 20,
             fontFamily: "Montserrat",

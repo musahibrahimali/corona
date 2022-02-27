@@ -1,10 +1,5 @@
 import 'package:auto_size_text/auto_size_text.dart';
-
-import '../../widgets/stats_widgets/countries_grid.dart';
-import '../../widgets/skeletons/country_list_skeleton.dart';
-import '../../models/summary_each_country.dart';
-import '../../network_requests/api_client.dart';
-import '../../network_requests/exceptions.dart';
+import 'package:corona/index.dart';
 import 'package:flutter/material.dart';
 
 class CountriesScreen extends StatefulWidget {
@@ -67,7 +62,7 @@ class _CountriesScreenState extends State<CountriesScreen> {
           Padding(
             padding: const EdgeInsets.only(top: 15, bottom: 20),
             child: AutoSizeText(
-              "Search Any Country",
+              "Search Country",
               style: TextStyle(
                 fontSize: 20,
                 fontFamily: "Montserrat",
@@ -97,7 +92,7 @@ class _CountriesScreenState extends State<CountriesScreen> {
                 color: themeColor,
                 fontFamily: "Montserrat",
                 fontWeight: FontWeight.normal,
-                fontSize: MediaQuery.of(context).size.width<360.0?16:18,
+                fontSize: MediaQuery.of(context).size.width < 360.0 ? 16 : 18,
               ),
               decoration: InputDecoration(
                 contentPadding: const EdgeInsets.symmetric(vertical: 17),
@@ -113,7 +108,9 @@ class _CountriesScreenState extends State<CountriesScreen> {
                 focusedBorder: OutlineInputBorder(
                   borderRadius: BorderRadius.circular(15),
                   borderSide: BorderSide(
-                      color: themeColor, width: 1.4, style: BorderStyle.solid,
+                    color: themeColor,
+                    width: 1.4,
+                    style: BorderStyle.solid,
                   ),
                 ),
                 prefixIcon: Icon(

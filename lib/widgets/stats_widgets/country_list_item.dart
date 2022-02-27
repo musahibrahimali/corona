@@ -1,9 +1,8 @@
-import 'package:auto_size_text/auto_size_text.dart';
-
-import '../../screens/stats_dashboard_screens/country_stat.dart';
-import '../../models/item_color_data.dart';
-import 'package:flutter/material.dart';
 import 'dart:math';
+
+import 'package:auto_size_text/auto_size_text.dart';
+import 'package:corona/index.dart';
+import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 
 class CountryListItem extends StatelessWidget {
@@ -33,7 +32,7 @@ class CountryListItem extends StatelessWidget {
     return GestureDetector(
       onTap: () {
         Navigator.of(context).push(MaterialPageRoute(
-          builder: (context) =>CountryStatScreen(
+          builder: (context) => CountryStatScreen(
             color: itemColorData.backgroundColor,
             countryName: countryName,
             countryCode: countryCode,
@@ -52,12 +51,11 @@ class CountryListItem extends StatelessWidget {
             height: height,
             width: width,
             decoration: BoxDecoration(
-                color: itemColorData.backgroundColor,
-                borderRadius: BorderRadius.circular(20),
+              color: itemColorData.backgroundColor,
+              borderRadius: BorderRadius.circular(20),
             ),
             child: Stack(
               children: <Widget>[
-
                 //Gradient
                 Align(
                   alignment: Alignment(0, 1),
@@ -66,15 +64,14 @@ class CountryListItem extends StatelessWidget {
                     child: Container(
                       height: size.height,
                       decoration: BoxDecoration(
-                        borderRadius:
-                            BorderRadius.vertical(bottom: Radius.circular(20)),
+                        borderRadius: BorderRadius.vertical(bottom: Radius.circular(20)),
                         gradient: LinearGradient(
-                            colors: <Color>[
-                              itemColorData.gradientColor,
-                              itemColorData.backgroundColor,
-                            ],
-                            begin: Alignment.topCenter,
-                            end: Alignment.bottomCenter,
+                          colors: <Color>[
+                            itemColorData.gradientColor,
+                            itemColorData.backgroundColor,
+                          ],
+                          begin: Alignment.topCenter,
+                          end: Alignment.bottomCenter,
                         ),
                       ),
                     ),
@@ -85,8 +82,7 @@ class CountryListItem extends StatelessWidget {
                 Align(
                   alignment: Alignment(0, 1),
                   child: CustomPaint(
-                    painter: CustomLinePainter(
-                        color: itemColorData.lineColor, lineWidth: 1),
+                    painter: CustomLinePainter(color: itemColorData.lineColor, lineWidth: 1),
                     size: Size(size.width, size.height),
                   ),
                 ),
@@ -95,10 +91,9 @@ class CountryListItem extends StatelessWidget {
                 Align(
                   alignment: Alignment(0, -0.65),
                   child: LayoutBuilder(
-                    builder:(ctx,constraint) => Column(
+                    builder: (ctx, constraint) => Column(
                       mainAxisSize: MainAxisSize.min,
                       children: <Widget>[
-
                         //Flag
                         Image(
                           image: AssetImage(flagPath),
@@ -133,7 +128,7 @@ class CountryListItem extends StatelessWidget {
                         Row(
                           mainAxisAlignment: MainAxisAlignment.center,
                           children: <Widget>[
-                            SizedBox(width:6),
+                            SizedBox(width: 6),
 
                             //Number
                             LimitedBox(
@@ -142,11 +137,11 @@ class CountryListItem extends StatelessWidget {
                               child: AutoSizeText(
                                 formatter.format(value),
                                 style: TextStyle(
-                                    fontFamily: "Montserrat",
-                                    color: Colors.white,
-                                    fontSize: 19,
-                                    letterSpacing: 1,
-                                    fontWeight: FontWeight.w700,
+                                  fontFamily: "Montserrat",
+                                  color: Colors.white,
+                                  fontSize: 19,
+                                  letterSpacing: 1,
+                                  fontWeight: FontWeight.w700,
                                 ),
                                 maxFontSize: 19,
                                 maxLines: 1,
@@ -157,12 +152,12 @@ class CountryListItem extends StatelessWidget {
 
                             //Arrow
                             Transform.rotate(
-                                angle: isIncreasing ? pi / 4 : (pi / 4) * 3,
-                                child: const Icon(
-                                  Icons.arrow_upward,
-                                  color: Colors.white,
-                                  size: 19.5,
-                                ),
+                              angle: isIncreasing ? pi / 4 : (pi / 4) * 3,
+                              child: const Icon(
+                                Icons.arrow_upward,
+                                color: Colors.white,
+                                size: 19.5,
+                              ),
                             )
                           ],
                         )

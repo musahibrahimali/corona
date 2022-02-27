@@ -1,25 +1,17 @@
-import '../../widgets/stats_widgets/country_stat_widget.dart';
+import 'package:corona/index.dart';
 import 'package:flutter/material.dart';
 
 class CountryStatScreen extends StatefulWidget {
   final color, countryName, countryCode, flagPath, isIncreasing, totalCases;
 
-  const CountryStatScreen(
-      {Key key,
-      this.color,
-      this.countryName,
-      this.countryCode,
-      this.flagPath,
-      this.isIncreasing,
-      this.totalCases})
+  const CountryStatScreen({Key key, this.color, this.countryName, this.countryCode, this.flagPath, this.isIncreasing, this.totalCases})
       : super(key: key);
 
   @override
   _CountryStatScreenState createState() => _CountryStatScreenState();
 }
 
-class _CountryStatScreenState extends State<CountryStatScreen>{
-
+class _CountryStatScreenState extends State<CountryStatScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -27,7 +19,7 @@ class _CountryStatScreenState extends State<CountryStatScreen>{
       body: SafeArea(
         child: CountryStatWidget(
           color: widget.color,
-          onBackArrow: (){
+          onBackArrow: () {
             Navigator.of(context).pop();
           },
           countryCode: widget.countryCode,

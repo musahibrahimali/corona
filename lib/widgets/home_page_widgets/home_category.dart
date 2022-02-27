@@ -1,18 +1,12 @@
 import 'package:auto_size_text/auto_size_text.dart';
-
-import '../../screens/myths_page.dart';
-import '../../screens/precautions_page.dart';
-import '../../screens/symptoms_page.dart';
-import '../../screens/updates_page.dart';
-import '../../screens/virus_details_page.dart';
-import '../../screens/stats_dashboard_screens/world_stat.dart';
+import 'package:corona/index.dart';
 import 'package:flutter/material.dart';
 
 // ignore: must_be_immutable
 class CategoryTab extends StatelessWidget {
   final imgPath, tabName, tabDesc, imgHeight, imgLeft, imgBottom;
   final Color color;
-  final AutoSizeGroup titleGrp,descGrp;
+  final AutoSizeGroup titleGrp, descGrp;
 
   const CategoryTab(
       {this.imgPath,
@@ -22,35 +16,62 @@ class CategoryTab extends StatelessWidget {
       this.imgHeight = 150.0,
       this.imgLeft = 15.0,
       this.imgBottom = -8.0,
-      this.titleGrp, this.descGrp}
-  );
+      this.titleGrp,
+      this.descGrp});
 
   Function getPage(tabName, context) {
     switch (tabName) {
       case ("Symptoms"):
-        return () => Navigator.of(context).push(MaterialPageRoute(
-            builder: (context) =>
-                SymptomsScreen(color: color, imgPath: imgPath)));
-      case ("Precautions"):
-        return () => Navigator.of(context).push(MaterialPageRoute(
-            builder: (context) =>
-                PrecautionsScreen(color: color, imgPath: imgPath)));
-      case ("Myths"):
-        return () => Navigator.of(context).push(MaterialPageRoute(
-            builder: (context) => MythsScreen(color: color, imgPath: imgPath)));
-      case ("Virus"):
-        return () => Navigator.of(context).push(MaterialPageRoute(
-            builder: (context) =>
-                VirusDetailsScreen(color: color, imgPath: imgPath)));
-      case ("Updates"):
-        return () => Navigator.of(context).push(MaterialPageRoute(
-            builder: (context) => UpdatesScreen(
+        return () => Navigator.of(context).push(
+              MaterialPageRoute(
+                builder: (context) => SymptomsScreen(
                   color: color,
                   imgPath: imgPath,
-                )));
+                ),
+              ),
+            );
+      case ("Precautions"):
+        return () => Navigator.of(context).push(
+              MaterialPageRoute(
+                builder: (context) => PrecautionsScreen(
+                  color: color,
+                  imgPath: imgPath,
+                ),
+              ),
+            );
+      case ("Myths"):
+        return () => Navigator.of(context).push(
+              MaterialPageRoute(
+                builder: (context) => MythsScreen(
+                  color: color,
+                  imgPath: imgPath,
+                ),
+              ),
+            );
+      case ("Virus"):
+        return () => Navigator.of(context).push(
+              MaterialPageRoute(
+                builder: (context) => VirusDetailsScreen(
+                  color: color,
+                  imgPath: imgPath,
+                ),
+              ),
+            );
+      case ("Updates"):
+        return () => Navigator.of(context).push(
+              MaterialPageRoute(
+                builder: (context) => UpdatesScreen(
+                  color: color,
+                  imgPath: imgPath,
+                ),
+              ),
+            );
       case ("Statistics"):
-        return () => Navigator.of(context)
-            .push(MaterialPageRoute(builder: (context) => WorldStatScreen()));
+        return () => Navigator.of(context).push(
+              MaterialPageRoute(
+                builder: (context) => WorldStatScreen(),
+              ),
+            );
     }
     return () {};
   }
@@ -118,8 +139,7 @@ class CategoryTab extends StatelessWidget {
               bottom: imgBottom,
               child: Container(
                 height: imgHeight,
-                child: Hero(
-                    tag: imgPath, child: Image(image: AssetImage(imgPath))),
+                child: Hero(tag: imgPath, child: Image(image: AssetImage(imgPath))),
               ),
             ),
           ],
