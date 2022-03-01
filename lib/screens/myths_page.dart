@@ -2,7 +2,6 @@ import 'package:auto_size_text/auto_size_text.dart';
 import 'package:flutter/material.dart';
 import 'package:smooth_page_indicator/smooth_page_indicator.dart';
 
-// ignore: must_be_immutable
 class MythsScreen extends StatelessWidget {
   final controller = PageController(
     initialPage: 0,
@@ -12,7 +11,7 @@ class MythsScreen extends StatelessWidget {
 
   final Color color;
 
-  List<Map<String, String>> myths = [
+  final List<Map<String, String>> myths = [
     {
       "myth": "SARS-CoV-2 disease CANNOT be transmitted through mosquito bites",
       "desc": "It's a respiratory virus which spreads primarily "
@@ -21,7 +20,7 @@ class MythsScreen extends StatelessWidget {
       "imgPath": "assets/myths/mosquito.png",
     },
     {
-      "myth": "COVID-19 virus can be transmitted in areas with hot and humid climates",
+      "myth": "Sars-cov-2 virus can be transmitted in areas with hot and humid climates",
       "desc": "There is no reason to believe that hot weather can kill the new coronavirus"
           " or other diseases. It can be transmitted in any climate.",
       "imgPath": "assets/myths/hot.png",
@@ -30,7 +29,7 @@ class MythsScreen extends StatelessWidget {
       "myth": "Garlic DOES NOT protect against infection from the coronavirus",
       "desc": "Garlic may have some anti microbial properties."
           " However, no evidence suggests that garlic"
-          " can protect people against COVID-19 virus.",
+          " can protect people against Sars-cov-2 virus.",
       "imgPath": "assets/myths/garlic.png",
     },
     {
@@ -153,9 +152,8 @@ class MythsScreen extends StatelessWidget {
             fit: FlexFit.loose,
             child: Container(
               padding: const EdgeInsets.fromLTRB(16, 20, 16, 15),
-              width: MediaQuery.of(context).size.width > 360.0
-                  ? MediaQuery.of(context).size.width - 31.0
-                  : MediaQuery.of(context).size.width,
+              width:
+                  MediaQuery.of(context).size.width > 360.0 ? MediaQuery.of(context).size.width - 31.0 : MediaQuery.of(context).size.width,
               child: Material(
                 borderRadius: BorderRadius.circular(15.0),
                 elevation: 5,

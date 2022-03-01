@@ -1,4 +1,4 @@
-package com.example.corona
+package com.miastudiosinc.corona
 
 import io.flutter.embedding.android.FlutterActivity
 

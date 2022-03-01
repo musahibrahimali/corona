@@ -2,7 +2,6 @@ import 'package:auto_size_text/auto_size_text.dart';
 import 'package:corona/index.dart';
 import 'package:flutter/material.dart';
 
-// ignore: must_be_immutable
 class HomeCategories extends StatelessWidget {
   static AutoSizeGroup titleGrp = AutoSizeGroup();
   static AutoSizeGroup descGrp = AutoSizeGroup();
@@ -23,7 +22,7 @@ class HomeCategories extends StatelessWidget {
       "imgHeight": 150.0,
       "imgPath": "assets/symptoms/symptoms.png",
       "tabName": "Symptoms",
-      "tabDesc": "Top covid-19 symptoms",
+      "tabDesc": "Top symptoms",
       "color": Colors.teal[800],
     },
     {

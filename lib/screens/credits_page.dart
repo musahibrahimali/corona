@@ -89,7 +89,7 @@ class CreditsScreen extends StatelessWidget {
 
                     //App Name
                     const AutoSizeText(
-                      "Covid-19 Tracker",
+                      "Sars-cov-2 Tracker",
                       style: TextStyle(
                         fontSize: 25,
                         fontFamily: "Montserrat",
@@ -153,7 +153,7 @@ class CreditsScreen extends StatelessWidget {
             child: const Padding(
               padding: EdgeInsets.all(15),
               child: AutoSizeText(
-                "Covid-19 Tracker is an app made with Flutter framework to provide worldwide information related to Covid-19 pandemic. It shows the affected, recovered, deaths, tests and infection probability for each country. As it is an open source app feel free to contribute and star in GitHub.",
+                "Sars-cov-2 Tracker is an app made with Flutter framework to provide worldwide information related to Sars-cov-2 pandemic. It shows the affected, recovered, deaths, tests and infection probability for each country. As it is an open source app feel free to contribute and star in GitHub.",
                 style: TextStyle(
                   fontSize: 16,
                   letterSpacing: 0.4,

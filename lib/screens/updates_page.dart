@@ -49,7 +49,7 @@ class _UpdatesScreenState extends State<UpdatesScreen> {
       // resizeToAvoidBottomPadding: false,
       appBar: AppBar(
         title: const AutoSizeText(
-          "Covid-19 Updates",
+          "Sars Updates",
           style: TextStyle(
             color: Colors.black,
             fontFamily: "Montserrat",
@@ -116,9 +116,7 @@ class _UpdatesScreenState extends State<UpdatesScreen> {
                   children: <Widget>[
                     //Sort by
                     Padding(
-                      padding: MediaQuery.of(context).size.width > 360.0
-                          ? const EdgeInsets.only(left: 20)
-                          : const EdgeInsets.only(left: 0),
+                      padding: MediaQuery.of(context).size.width > 360.0 ? const EdgeInsets.only(left: 20) : const EdgeInsets.only(left: 0),
                       child: const LimitedBox(
                         maxWidth: 68,
                         child: AutoSizeText(
